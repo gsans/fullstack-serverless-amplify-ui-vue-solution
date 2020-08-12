@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { onAuthUIStateChange } from '@aws-amplify/ui-components'
+import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components'
 import { API, graphqlOperation } from 'aws-amplify';
 import { listRestaurants } from './graphql/queries';
 import { createRestaurant, deleteRestaurant } from './graphql/mutations';
@@ -71,7 +71,7 @@ export default {
     // authentication state managament
     onAuthUIStateChange((state, user) => {
       // set current user and load data after login
-      if (state === 'signedin') {
+      if (state === AuthState.SignedIn) {
         this.user = user;
         this.getData();
       }
